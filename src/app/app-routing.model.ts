@@ -14,10 +14,12 @@ const appRoutes: Routes = [
 	{
 		path: 'contacts',
 		component: ContactsComponent,
-	},
-	{
-		path: 'contacts/:id',
-		component: ContactDetailsComponent
+		children: [
+			{
+				path: ':id',
+				component: ContactDetailsComponent
+			}
+		]
 	},
 	{
 		path: 'messages',
