@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { contacts } from './contacts';
 
 @Component({
 
@@ -11,31 +12,7 @@ export class ContactsComponent {
 	private contacts: any[];
 
 	constructor(){
-		this.contacts = [
-		{
-			firstName: 'John',
-			lastName: 'Doe',
-			email: 'john@doe.com'
-		},
-		{
-			firstName: 'Sam',
-			lastName: 'Smith',
-			email: 'sam@doe.com'
-		},
-		{
-			firstName: 'George',
-			lastName: 'Sullivan',
-			email: 'george@doe.com'
-
-		},
-
-		{
-			firstName: 'John',
-			lastName: 'Deere',
-			email: 'john@doe.com'
-		}
-
-		];
+		this.contacts = contacts;
 	}
 
 	remove(contact) {
