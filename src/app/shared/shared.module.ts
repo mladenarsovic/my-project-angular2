@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FilterPipe } from './filter.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
+import { ContactsService } from './services/contacts.service';
 
 @NgModule({
   imports: [
@@ -11,9 +12,15 @@ import { FilterPipe } from './filter.pipe';
   FilterPipe
   ],
 
+  providers: [
+  	ContactsService
+  ],
+
   exports: [
   	FilterPipe
   ]
+
+  
 
 })
 export class SharedModule { }

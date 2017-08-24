@@ -1,4 +1,12 @@
-export let contacts =[
+import { Injectable } from '@angular/core';
+
+@Injectable()
+export class ContactsService {
+
+  constructor() { }
+
+  public getContacts() {
+  	return [
 	{
 		id: 1,
 		firstName: 'John',
@@ -27,3 +35,5 @@ export let contacts =[
 	}
 
 ];
+  }
+}
