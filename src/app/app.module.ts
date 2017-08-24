@@ -3,12 +3,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.model';
 
 import { AppComponent } from './app.component';
+import { SharedModule } from './shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 import { ContactsComponent } from './components/contacts/contacts.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { MessagesComponent } from './components/messages/messages.component';
-import { ContactDetailsComponent } from './components/contacts/contact-details/contact-details.component'; 
-
+import { ContactDetailsComponent } from './components/contacts/contact-details/contact-details.component';
 
 
 @NgModule({
@@ -18,7 +19,9 @@ import { ContactDetailsComponent } from './components/contacts/contact-details/c
   imports: [
 
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

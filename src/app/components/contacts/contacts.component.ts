@@ -10,6 +10,7 @@ import { contacts } from './contacts';
 export class ContactsComponent {
 
 	private contacts: any[];
+	private filter: string = '';
 
 	constructor(){
 		this.contacts = contacts;
