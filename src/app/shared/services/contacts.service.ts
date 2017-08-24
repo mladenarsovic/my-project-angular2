@@ -9,4 +9,12 @@ export class ContactsService {
   public getContacts() {
   	return this.http.get<any[]>('http://localhost:8000/contacts.php');
   }
+
+  public addContact(firstName, lastName, email) {
+  		return this.http.post('http://localhost:8000/contacts-add.php?aaa=eee', {
+  			firstName: firstName,
+  			lastName: lastName,
+  			email: email
+  		});
+  }
 }
