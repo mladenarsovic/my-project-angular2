@@ -1,39 +1,12 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class ContactsService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   public getContacts() {
-  	return [
-	{
-		id: 1,
-		firstName: 'John',
-		lastName: 'Doe',
-		email: 'john@doe.com'
-	},
-	{
-		id: 2,
-		firstName: 'Sam',
-		lastName: 'Smith',
-		email: 'sam@doe.com'
-	},
-	{
-		id: 3,
-		firstName: 'George',
-		lastName: 'Sullivan',
-		email: 'george@doe.com'
-
-	},
-
-	{
-		id: 4,
-		firstName: 'John',
-		lastName: 'Deere',
-		email: 'john@doe.com'
-	}
-
-];
+  	return this.http.get<any[]>('http://localhost:8000/contacts.php');
   }
 }

@@ -18,7 +18,11 @@ export class ContactDetailsComponent implements OnInit {
   ngOnInit() {
   	this.route.params.subscribe(() => {
   		let id = parseInt(this.route.snapshot.paramMap.get('id'));
-  		this.contact = this.contactsService.getContacts().find(item => item['id'] == id);
+  		this.contactsService.getContacts().subscribe((data:any[]) => {
+        this.contact = data.find(item => item['id'] == id);
+      });
+
+
   	});  	
   }
 

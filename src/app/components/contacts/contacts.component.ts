@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ContactsService } from '../../shared/services/contacts.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
 
@@ -9,12 +10,17 @@ import { ContactsService } from '../../shared/services/contacts.service';
 
 export class ContactsComponent {
 
-	private contacts: any[];
+	private contacts: any = [];
 	private filter: string = '';
 
 	constructor(contactsService: ContactsService){
 		
-		this.contacts = contactsService.getContacts();
+		contactsService.getContacts().subscribe(data => {
+			this.contacts = data;
+		},
+		(err: HttpErrorResponse) => {
+			alert(`Backend returned code ${err.status} with message: ${err.error}`);
+		});
 	}
 
 	remove(contact) {
