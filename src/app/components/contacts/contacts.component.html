@@ -1,9 +1,28 @@
 <h1>Contacts</h1>
 
-<div class="input-group col-md-5 pl-0 my-lg-4 my-2">
+<!-- <div class="input-group col-md-5 pl-0 my-lg-4 my-2">
   <span class="input-group-addon">Filter by name</span>
   <input type="text" class="form-control" [(ngModel)]="filter" >
-</div>
+</div> -->
+<div>
+  <div class="form-group">
+    <label>First Name</label>
+    <input [(ngModel)]="newContact.firstName" type="text" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label>Last Name</label>
+    <input [(ngModel)]="newContact.lastName" type="text" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label>Email Address</label>
+    <input [(ngModel)]="newContact.email" type="text" class="form-control">
+  </div>
+    
+      <button type="button" class="btn btn-primary" (click)="addContact(newContact)">Add Contact</button>
+    
+</div><br>
 
 <table class="table table-striped">
   <thead>
@@ -26,8 +45,6 @@
   </tbody>
 </table>
 
-<div class="input-group col-md-5 pl-0 my-lg-4 my-2">
-    <button type="button" class="btn btn-primary" (click)="addContact()">Add Contact</button>
-</div>
+
 
 <router-outlet></router-outlet>

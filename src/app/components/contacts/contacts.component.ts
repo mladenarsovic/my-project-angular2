@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ContactsService } from '../../shared/services/contacts.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
+import { Contact } from '../../shared/models/contact.model';
+
 @Component({
 
 	selector: 'app-contacts',
@@ -12,6 +14,7 @@ export class ContactsComponent {
 
 	private contacts: any = [];
 	private filter: string = '';
+	private newContact: Contact = new Contact();
 
 	constructor(private contactsService: ContactsService){
 		
@@ -28,8 +31,8 @@ export class ContactsComponent {
 		this.contacts.splice(index,1);
 	}
 
-	addContact() {
-		this.contactsService.addContact('Sam', 'Jee', 'sam.jee@example.com').
+	addContact(newContact: Contact) {
+		this.contactsService.addContact(newContact).
 		subscribe(
 			contact => {
 				this.contacts.push(contact);
