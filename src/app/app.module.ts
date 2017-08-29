@@ -11,6 +11,8 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { ContactDetailsComponent } from './components/contacts/contact-details/contact-details.component';
 
+import {CustomFormsModule} from 'ng2-validation';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { ContactDetailsComponent } from './components/contacts/contact-details/c
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    CustomFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
