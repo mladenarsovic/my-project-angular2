@@ -14,8 +14,7 @@ export class ContactsComponent {
 
 	private contacts: any = [];
 	private filter: string = '';
-	private newContact: Contact = new Contact();
-
+	
 	constructor(private contactsService: ContactsService){
 		
 		contactsService.getContacts().subscribe(data => {
@@ -35,10 +34,8 @@ export class ContactsComponent {
 		this.contactsService.addContact(newContact).
 		subscribe(
 			contact => {
-				this.contacts.push(contact);
-				this.newContact = new Contact;
-			}
-			
+				this.contacts.push(contact);				
+			}			
 		);
 	}
 	

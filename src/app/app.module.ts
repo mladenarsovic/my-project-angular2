@@ -10,13 +10,13 @@ import { ContactsComponent } from './components/contacts/contacts.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { ContactDetailsComponent } from './components/contacts/contact-details/contact-details.component';
-
+import { ContactFormComponent } from './components/contacts/contact-form/contact-form.component';
 import {CustomFormsModule} from 'ng2-validation';
 
 
 @NgModule({
   declarations: [
-    AppComponent, ContactsComponent, LayoutComponent, MessagesComponent, ContactDetailsComponent				
+    AppComponent, ContactsComponent, LayoutComponent, MessagesComponent, ContactDetailsComponent, ContactFormComponent				
   ],
   imports: [
 
