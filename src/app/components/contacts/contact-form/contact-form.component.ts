@@ -21,6 +21,10 @@ export class ContactFormComponent{
         this.onSubmit.emit(contact);
         this.newContact = new Contact();
     }
+
+    edit(contact: Contact){
+        this.newContact = contact;
+    }
 }
 
 
