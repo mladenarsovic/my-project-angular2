@@ -18,4 +18,13 @@ export class ContactsService {
   			email: contact.email
   		});
   }
+
+  public editContact(contact: Contact){
+	return this.http.put('http://localhost:8000/contacts-edit.php', {
+		id: contact.id,
+		firstName: contact.firstName,
+		lastName: contact.lastName,
+		email: contact.email
+	});
+  }
 }

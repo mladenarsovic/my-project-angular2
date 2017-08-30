@@ -1,4 +1,4 @@
-<form #contactForm="ngForm" (ngSubmit)="addContact(newContact); contactForm.reset()">
+<form #contactForm="ngForm" (ngSubmit)="submitContact(newContact); contactForm.reset()">
     <div class="form-group">
       <label>First Name</label>
       <input #firstName="ngModel" name="firstName" minlength="2" [(ngModel)]="newContact.firstName" type="text" class="form-control" required>
@@ -44,10 +44,10 @@
        
     </div>
   
-    <div class="form-group">
+    <div class="form-group" *ngIf="email.dirty">
         <label>Confirm Email Address</label>
         <input #confirmEmail="ngModel" name="confirmEmail" email [(ngModel)]="newContact.confirmEmail" type="text" class="form-control" required [equalTo]="email">
-      </div>
+      
     
       <div *ngIf="confirmEmail.invalid && (confirmEmail.dirty || confirmEmail.touched)"
         class="alert alert-danger">
@@ -59,10 +59,11 @@
         </div>
          
       </div>
+    </div>
     
         <button type="button" class="btn btn-danger" [disabled]="contactForm.pristine" (click)="contactForm.reset()">Reset</button>
     
-        <button type="submit" class="btn btn-primary" [disabled]="!contactForm.valid">Add Contact</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!contactForm.valid">{{ newContact.id ? "Edit Contact" : "Add Contact" }}</button>
        
      
         

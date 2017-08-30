@@ -4,7 +4,7 @@
   <span class="input-group-addon">Filter by name</span>
   <input type="text" class="form-control" [(ngModel)]="filter" >
 </div> -->
-<app-contact-form #contactForm (onSubmit)="addContact($event)"></app-contact-form>
+<app-contact-form #contactForm (onSubmit)="submitContact($event)"></app-contact-form>
 
 <table class="table table-striped">
   <thead>
@@ -23,7 +23,7 @@
       </td>
       <td class="align-middle">{{ contact.email | uppercase | lowercase }}</td>
       <td>
-        <button class="btn btn-danger btn-sm" (click)="contactForm.edit(contact)">Edit</button>
+        <button class="btn btn-primary btn-sm" (click)="contactForm.edit(contact)">Edit</button>
         <button class="btn btn-danger btn-sm" (click)="remove(contact)">Remove</button>
       </td>
     </tr>
