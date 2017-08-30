@@ -25,6 +25,10 @@ export class ContactFormComponent{
     edit(contact: Contact){
         this.newContact = Object.assign({},contact);
     }
+
+    remove(contact: Contact){
+        
+    }
 }
 
 
