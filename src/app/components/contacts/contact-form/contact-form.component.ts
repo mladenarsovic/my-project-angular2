@@ -27,7 +27,7 @@ export class ContactFormComponent{
     }
 
     remove(contact: Contact){
-
+        
     }
 }
 

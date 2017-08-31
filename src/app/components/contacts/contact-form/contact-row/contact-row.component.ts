@@ -14,6 +14,7 @@ export class ContactRowComponent{
         this.contact = contact;
     }
     @Input() index: number;
+
     @Output() onEdit = new EventEmitter<Contact>();
     @Output() onRemove = new EventEmitter<Contact>();
 
@@ -23,7 +24,7 @@ export class ContactRowComponent{
     constructor() {}
 
     ngOnChanges(changes: {[index: string]: SimpleChange}) {
-        console.log(changes);
+        // console.log(changes);
         if(changes.index.previousValue){
             this.oldIndex = changes.index.previousValue;
         }

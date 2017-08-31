@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ContactsService } from '../../shared/services/contacts.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Observable, Observer } from 'rxjs';
 
 import { Contact } from '../../shared/models/contact.model';
 
@@ -14,7 +15,8 @@ export class ContactsComponent {
 
 	private contacts: any = [];
 	private filter: string = '';
-	
+	private people: Observable<any>;
+
 	constructor(private contactsService: ContactsService){
 		
 		contactsService.getContacts().subscribe(data => {
@@ -23,11 +25,27 @@ export class ContactsComponent {
 		(err: HttpErrorResponse) => {
 			alert(`Backend returned code ${err.status} with message: ${err.error}`);
 		});
+
+		this.people = Observable.of([
+			{name: 'Joe'},
+			{name: 'Bob'},
+			{name: 'Susy'},
+		]);
+	
 	}
 
+	
 	remove(contact) {
 		const index = this.contacts.indexOf(contact);
-		this.contacts.splice(index,1);
+
+		this.contactsService.removeContact(contact)
+		.subscribe(
+			(contact: Contact) => {
+				const index = this.contacts.indexOf(contact);
+				this.contacts.splice(index,1);
+			}
+		)
+
 	}
 
 	submitContact(contact: Contact) {

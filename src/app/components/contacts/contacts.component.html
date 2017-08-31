@@ -17,16 +17,23 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let contact of contacts; let i = index"  
+    <tr *ngFor="let contact of contacts; let i = index "  
     [contactRow]="contact" 
     (onEdit)="contactForm.edit(contact)"
-    (onRemove)="contactForm.remove(contact)"
+    (onRemove)="remove(contact)"
     [index]="i">
       
     </tr>
   </tbody>
 </table>
 
+<h5>People</h5>
+<ul>
+  <li *ngFor="let person of people | async">
+    {{ person.name }}
+  </li>
+
+</ul>
 
 
 <router-outlet></router-outlet>
