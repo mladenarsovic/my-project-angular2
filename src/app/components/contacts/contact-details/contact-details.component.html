@@ -1,4 +1,4 @@
-<ul class="list-group">
+<ul class="list-group" *ngIf="contact && contact.id">
 	<li class="list-group-item">First Name: {{ contact.firstName }}</li>
 	<li class="list-group-item">Last Name: {{ contact.lastName }}</li>
 	<li class="list-group-item">Email: {{ contact.email }}</li>

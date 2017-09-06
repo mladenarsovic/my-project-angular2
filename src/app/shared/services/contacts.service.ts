@@ -98,6 +98,14 @@ export class ContactsService {
       // } else {
       //   return o.error('Not found');
       // }
+      this.http.get('http://localhost:8000/api/contacts/' + id)
+      .subscribe((contact: any) => {
+        let existing = this.contacts.filter(c => c.id == id);
+        if (existing.length) {
+          o.next(existing[0]);
+          return o.complete();
+        }
+      });
     });
   }
 
