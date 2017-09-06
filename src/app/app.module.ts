@@ -11,14 +11,16 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { ContactDetailsComponent } from './components/contacts/contact-details/contact-details.component';
 import { ContactFormComponent } from './components/contacts/contact-form/contact-form.component';
-import {CustomFormsModule} from 'ng2-validation';
+import { ContactsService } from './shared/services/contacts.service';
 import { ContactRowComponent } from './components/contacts/contact-form/contact-row/contact-row.component';
+
+import {CustomFormsModule} from 'ng2-validation';
 
 
 @NgModule({
   declarations: [
     AppComponent, 
-    ContactsComponent, 
+    ContactsComponent,
     LayoutComponent, 
     MessagesComponent, 
     ContactDetailsComponent, 
@@ -33,7 +35,10 @@ import { ContactRowComponent } from './components/contacts/contact-form/contact-
     FormsModule,
     CustomFormsModule
   ],
-  providers: [],
+  providers: [
+    {provide: 'ContactsService1', useClass: ContactsService},
+    {provide: 'APP_CONFIG_DEFAULT_TITLE', useValue: 'Some default title'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

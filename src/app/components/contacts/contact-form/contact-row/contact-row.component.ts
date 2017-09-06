@@ -1,45 +1,38 @@
-import { Component, EventEmitter, Input, Output, SimpleChange } from '@angular/core';
-import { Contact } from '../../../../shared/models/contact.model';
-
+import { Component, Input, EventEmitter, Output, SimpleChange } from '@angular/core'; 
+import { Contact } from './../../../../shared/models/contact.model';
 
 @Component({
     selector: '[contactRow]',
-	templateUrl: 'contact-row.component.html'
+	templateUrl: './contact-row.component.html'
 })
 
-export class ContactRowComponent{
+export class ContactRowComponent {
 
     @Input() 
-    set contactRow(contact: Contact){
+    set contactRow(contact: Contact) {
         this.contact = contact;
     }
-    @Input() index: number;
 
+    @Input() index: number;
     @Output() onEdit = new EventEmitter<Contact>();
     @Output() onRemove = new EventEmitter<Contact>();
 
     private contact: Contact;
     private oldIndex: number;
-    
-    constructor() {}
 
-    ngOnChanges(changes: {[index: string]: SimpleChange}) {
-        // console.log(changes);
+    constructor(){}
+
+    ngOnChanges(changes: {[index: string]: SimpleChange}){
         if(changes.index.previousValue){
             this.oldIndex = changes.index.previousValue;
         }
-
     }
-       
+
     edit(contact: Contact){
-            this.onEdit.emit(contact);
-        }
-    
+        this.onEdit.emit(contact);
+    }
+
     remove(contact: Contact){
         this.onRemove.emit(contact);
     }
-   
 }
-
-
-

@@ -3,11 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FilterPipe } from './pipes/filter.pipe';
 import { ContactsService } from './services/contacts.service';
 import { HttpClientModule } from '@angular/common/http';
+import { PageTitleService } from '../shared/services/page-title.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   
   declarations: [ 
@@ -15,7 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
   ],
 
   providers: [
-  	ContactsService
+    ContactsService,
+    PageTitleService
   ],
 
   exports: [

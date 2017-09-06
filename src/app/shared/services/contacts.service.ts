@@ -1,40 +1,88 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Contact } from '../../shared/models/contact.model';
+import { Contact } from './../models/contact.model';
 import { Observable, Observer } from 'rxjs';
 
 @Injectable()
 export class ContactsService {
 
+  private contacts: Contact[] = [];
+  private idCount: number = 3;
+
   constructor(private http: HttpClient) { }
 
-  public getContacts() {
-  	return this.http.get<any[]>('http://localhost:8000/contacts.php');
+  public getContacts()
+  {
+    return new Observable((o: Observer<any>) => {
+      this.http.get('http://localhost:8000/api/contacts').subscribe((contacts: any[])=>{
+        this.contacts = contacts.map((contact)=>{
+            return new Contact(contact.id, contact.first_name, contact.last_name, contact.email);
+          });
+          o.next(this.contacts);
+          return o.complete();
+      })
+    });
   }
 
-  public addContact(contact: Contact) {
-  		return this.http.post('http://localhost:8000/contacts-add.php', {
-  			firstName: contact.firstName,
-  			lastName: contact.lastName,
-  			email: contact.email
-  		});
+  public addContact(contact: Contact)
+  {
+    return new Observable((o: Observer<any>) => {
+      // this.idCount++;
+      // let c = new Contact(this.idCount, contact.firstName, contact.lastName, contact.email);
+      
+      // this.contacts.push(c);
+      // o.next(c);
+      // return o.complete();
+
+      this.http.post('http://localhost:8000/api/contacts', {
+        first_name: contact.firstName,
+        last_name: contact.lastName,
+        email: contact.email
+
+      }).subscribe((contact: any)=>{
+        let c = new Contact(contact.id, contact.first_name, contact.last_name, contact.email);
+        this.contacts.push(c);
+        o.next(c);
+        return o.complete();
+      })
+    });
   }
 
-  public editContact(contact: Contact){
-	return this.http.put('http://localhost:8000/contacts-edit.php', {
-		id: contact.id,
-		firstName: contact.firstName,
-		lastName: contact.lastName,
-		email: contact.email
-	});
-	}
-	
-	removeContact(contact: Contact) {
-		return new Observable((o: Observer<any>) => {
-			setTimeout(() => {
-				o.next(contact);
-				return o.complete();
-			}, 5000);
-		});
-	}
+  public editContact(contact: Contact)
+  {
+    return new Observable((o: Observer<any>) => {
+      let existing = this.contacts.filter(c => c.id == contact.id);
+      if (existing.length) {
+        Object.assign(existing[0], contact);
+      }
+
+      o.next(existing);
+      return o.complete();
+    });
+  }
+
+  public removeContact(contact: Contact)
+  {
+    return new Observable((o: Observer<any>) => {
+      const index = this.contacts.indexOf(contact);
+      this.contacts.splice(index, 1);
+
+      o.next(index);
+      return o.complete();
+    });
+  }
+
+  public getContactById(id: number)
+  {
+    return new Observable((o: Observer<any>) => {
+      // let existing = this.contacts.filter(c => c.id == id);
+      // if (existing.length) {
+      //   o.next(existing);
+      //   return o.complete();
+      // } else {
+      //   return o.error('Not found');
+      // }
+    });
+  }
+
 }
