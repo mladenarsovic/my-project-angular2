@@ -71,11 +71,20 @@ export class ContactsService {
   public removeContact(contact: Contact)
   {
     return new Observable((o: Observer<any>) => {
-      const index = this.contacts.indexOf(contact);
-      this.contacts.splice(index, 1);
+      // const index = this.contacts.indexOf(contact);
+      // this.contacts.splice(index, 1);
 
-      o.next(index);
-      return o.complete();
+      // o.next(index);
+      // return o.complete();
+
+      this.http.delete('http://localhost:8000/api/contacts/' + contact.id)
+      .subscribe(() => {
+         const index = this.contacts.indexOf(contact);
+         this.contacts.splice(index, 1);
+
+         o.next(index);
+         return o.complete();
+      });
     });
   }
 
