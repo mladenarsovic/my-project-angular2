@@ -5,6 +5,7 @@ import { ContactsService } from './services/contacts.service';
 import { HttpClientModule } from '@angular/common/http';
 import { PageTitleService } from '../shared/services/page-title.service';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
 
   providers: [
     ContactsService,
-    PageTitleService
+    PageTitleService,
+    AuthService
   ],
 
   exports: [

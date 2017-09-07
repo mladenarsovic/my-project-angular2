@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.model';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
@@ -13,6 +14,7 @@ import { ContactDetailsComponent } from './components/contacts/contact-details/c
 import { ContactFormComponent } from './components/contacts/contact-form/contact-form.component';
 import { ContactsService } from './shared/services/contacts.service';
 import { ContactRowComponent } from './components/contacts/contact-form/contact-row/contact-row.component';
+import { LoginComponent } from './components/auth/login.component';
 
 import {CustomFormsModule} from 'ng2-validation';
 
@@ -25,7 +27,8 @@ import {CustomFormsModule} from 'ng2-validation';
     MessagesComponent, 
     ContactDetailsComponent, 
     ContactFormComponent,
-    ContactRowComponent				
+    ContactRowComponent,
+    LoginComponent				
   ],
   imports: [
 
@@ -33,7 +36,8 @@ import {CustomFormsModule} from 'ng2-validation';
     AppRoutingModule,
     SharedModule,
     FormsModule,
-    CustomFormsModule
+    CustomFormsModule,
+    HttpClientModule
   ],
   providers: [
     {provide: 'ContactsService1', useClass: ContactsService},
